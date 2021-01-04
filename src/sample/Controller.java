@@ -14,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 
 import javax.imageio.ImageIO;
@@ -89,7 +90,7 @@ public class Controller {
                         textImage.setImage(new Image(getClass().getResourceAsStream("assets/brand-logo-on.png")));
                         fadeIn2.playFromStart();
                         knobLight.setImage(new Image(getClass().getResourceAsStream("assets/volume-indicator-on.png")));
-
+                        playSound();
                         fadeIn2.playFromStart();
                         fadeIn3.playFromStart();
                         screenScrollPane.setVisible(true);
@@ -163,6 +164,11 @@ public class Controller {
 
     public void doNotScroll(ScrollEvent event) {
         event.consume();
+    }
+
+    public void playSound(){
+        AudioClip note = new AudioClip(this.getClass().getResource("windows-xp-startup.mp3").toString());
+        note.play();
     }
 
 }
