@@ -1,31 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane fx:id="backgroundAnchorPane" onMouseDragged="#moveWindow" onMousePressed="#savePositionOffset" prefHeight="683.0" prefWidth="683.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-   <children>
-      <ImageView fitHeight="683.0" fitWidth="683.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@assets/coffee-machine-base.png" />
-         </image></ImageView>
-      <ToggleButton fx:id="powerButton" layoutX="192.0" layoutY="229.0" maxHeight="41.0" maxWidth="41.0" mnemonicParsing="false" onAction="#handleButton" prefHeight="41.0" prefWidth="41.0" stylesheets="@style.css" />
-      <ImageView fx:id="volumeKnob" fitHeight="41.0" fitWidth="41.0" layoutX="433.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@assets/volume-knob.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="knobLight" fitHeight="41.0" fitWidth="41.0" layoutX="433.0" layoutY="229.0" onMouseDragged="#controlKnob" onMousePressed="#setRotate" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@assets/volume-indicator-off.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="textImage" fitHeight="38.0" fitWidth="102.0" layoutX="141.0" layoutY="95.0" pickOnBounds="true">
-         <image>
-            <Image url="@assets/brand-logo-off.png" />
-         </image></ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="cupImage" fitHeight="150.0" fitWidth="200.0" layoutX="233.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" />
-   </children>
+    <children>
+        <ImageView fitHeight="683.0" fitWidth="683.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@assets/coffee-machine-base.png" />
+            </image>
+        </ImageView>
+        <ToggleButton fx:id="powerButton" layoutX="192.0" layoutY="229.0" maxHeight="41.0" maxWidth="41.0" mnemonicParsing="false" onAction="#handleButton" prefHeight="41.0" prefWidth="41.0" stylesheets="@style.css" />
+        <ImageView fx:id="volumeKnob" fitHeight="41.0" fitWidth="41.0" layoutX="433.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@assets/volume-knob.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="knobLight" fitHeight="41.0" fitWidth="41.0" layoutX="433.0" layoutY="229.0" onMouseDragged="#controlKnob" onMousePressed="#setRotate" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@assets/volume-indicator-off.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="textImage" fitHeight="38.0" fitWidth="102.0" layoutX="141.0" layoutY="95.0" pickOnBounds="true">
+            <image>
+                <Image url="@assets/brand-logo-off.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ScrollPane fx:id="screenScrollPane" focusTraversable="false" hbarPolicy="NEVER" layoutX="416.0" layoutY="95.0" onScroll="#doNotScroll" prefHeight="120.0" prefWidth="85.0" vbarPolicy="NEVER" visible="false">
+         <content>
+          <AnchorPane fx:id="screenAnchorPane" minHeight="0.0" minWidth="0.0" onScroll="#doNotScroll" prefHeight="390.0" prefWidth="83.0">
+               <children>
+                  <ImageView fx:id="screenFirstLayer" fitHeight="94.0" fitWidth="95.0" layoutX="-6.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+        <ImageView fx:id="cupImage" fitHeight="150.0" fitWidth="200.0" layoutX="233.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" />
+    </children>
 </AnchorPane>
