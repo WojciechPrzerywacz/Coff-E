@@ -1,21 +1,24 @@
+.root {
+        -fx-background-color: transparent;
+}
 
 #powerButton{
         -fx-background-size: 100% 100%;
         -fx-background-position: center;
         -fx-background-radius: 100px;
         -fx-border-radius: 100px;
-        -fx-background-image: url('power-button-off.png');
+        -fx-background-image: url('assets/power-button-off.png');
         -fx-background-color: transparent;
         -fx-focus-color: transparent;
 }
 #powerButton:selected{
 
-        -fx-background-image: url('power-button-on.png');
+        -fx-background-image: url('assets/power-button-on.png');
 }
 #volumeKnob{
-        -fx-background-image: url('volume-knob.png');
+        -fx-background-image: url('assets/volume-knob.png');
 }
 
 .my-class {
-    fx-background-image: url('brand-logo-on.png');
+        fx-background-image: url('assets/brand-logo-on.png');
 }
