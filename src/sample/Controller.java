@@ -1,8 +1,6 @@
 package sample;
 
 import javafx.animation.FadeTransition;
-import javafx.animation.Transition;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,36 +8,30 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
-
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class Controller {
     public Label waterAmountLabel;
-
     public enum CoffeeType {BLACK, WHITE}
     final public double MIN_ROTATE_VALUE = 0, MAX_ROTATE_VALUE = 360;
+    public double waterAmount=50;
     public ScrollPane screenScrollPane;
     public ImageView screenFirstLayer;
     public Label coffeeLeftLabel;
     double xOffset, yOffset;
     public AnchorPane backgroundAnchorPane;
-
     double knobCurrentRotate, mouseCurrentX;
     @FXML
     public ToggleButton powerButton;
     public ImageView textImage;
     public ImageView knobLight;
     public ImageView menuView;
+    public ImageView coffeView;
 
     public int flag = 0;
 
@@ -81,21 +73,6 @@ public class Controller {
                     try {
                         TimeUnit.MILLISECONDS.sleep(400);
                         textImage.setImage(new Image(getClass().getResourceAsStream("assets/brand-logo-on.png")));
-                        fadeIn2.playFromStart();
-                        TimeUnit.MILLISECONDS.sleep(250);
-                        textImage.setImage(new Image(getClass().getResourceAsStream("assets/brand-logo-off.png")));
-                        TimeUnit.MILLISECONDS.sleep(80);
-                        textImage.setImage(new Image(getClass().getResourceAsStream("assets/brand-logo-on.png")));
-                        fadeIn2.playFromStart();
-                        TimeUnit.MILLISECONDS.sleep(200);
-                        textImage.setImage(new Image(getClass().getResourceAsStream("assets/brand-logo-off.png")));
-                        TimeUnit.MILLISECONDS.sleep(100);
-                        textImage.setImage(new Image(getClass().getResourceAsStream("assets/brand-logo-on.png")));
-                        TimeUnit.MILLISECONDS.sleep(100);
-                        textImage.setImage(new Image(getClass().getResourceAsStream("assets/brand-logo-off.png")));
-                        TimeUnit.MILLISECONDS.sleep(150);
-                        textImage.setImage(new Image(getClass().getResourceAsStream("assets/brand-logo-on.png")));
-                        fadeIn2.playFromStart();
                         knobLight.setImage(new Image(getClass().getResourceAsStream("assets/volume-indicator-on.png")));
                         playSound();
                         fadeIn2.playFromStart();
@@ -155,11 +132,31 @@ public class Controller {
                     TimeUnit.MILLISECONDS.sleep(1);
                     screenScrollPane.setVvalue(screenScrollPane.getVvalue() + Math.sin(radians/1000));
                 }
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         })).start();
     }
+
+    public void handleButton3(MouseEvent event){
+        (new Thread(() -> {
+            try {
+
+                TimeUnit.MILLISECONDS.sleep(1000);
+
+                if (coffeeType==CoffeeType.BLACK){
+                    changeCoffeViewBlack();
+                }
+                if (coffeeType==CoffeeType.WHITE){
+                    changeCoffeViewWhite();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        })).start();
+    }
+
 
     public void setRotate(MouseEvent event) {
         knobCurrentRotate = knobLight.getRotate();
@@ -171,7 +168,7 @@ public class Controller {
         rotation = rotation < MIN_ROTATE_VALUE ? MIN_ROTATE_VALUE : Math.min(rotation, MAX_ROTATE_VALUE);
         knobLight.setRotate(rotation);
 
-        double waterAmount = 50 + (rotation * 250 / 360);
+        waterAmount = 50 + (rotation * 250 / 360);
 
         waterAmountLabel.setText((int)waterAmount + " ml");
     }
@@ -191,7 +188,7 @@ public class Controller {
     }
 
     public void playSound(){
-        AudioClip note = new AudioClip(this.getClass().getResource("windows-xp-startup.mp3").toString());
+        AudioClip note = new AudioClip(this.getClass().getResource("assets/startup_sound.mp3").toString());
         note.play();
     }
 
@@ -203,5 +200,76 @@ public class Controller {
         }
 
         coffeeLeftLabel.setText(text.toString());
+    }
+
+    public void changeCoffeViewBlack(){
+        (new Thread(() -> {
+            try {
+                AudioClip note = new AudioClip(this.getClass().getResource("assets/espresso_sound.mp3").toString());
+                note.play();
+                TimeUnit.MILLISECONDS.sleep(20000);
+                coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-black-level-1.png")));
+                if (waterAmount>100) {
+                    TimeUnit.MILLISECONDS.sleep(5000);
+                    coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-black-level-2.png")));
+                }
+                if (waterAmount>150) {
+                    TimeUnit.MILLISECONDS.sleep(5000);
+                    coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-black-level-3.png")));
+                }
+                if (waterAmount>200) {
+                    TimeUnit.MILLISECONDS.sleep(5000);
+                    coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-black-level-4.png")));
+                }
+                TimeUnit.MILLISECONDS.sleep(5000);
+                note.stop();
+                for (int i=0;screenScrollPane.getVvalue()>0.45;i++){
+                    double degrees = i;
+                    double radians = Math.toRadians(degrees);
+                    TimeUnit.MILLISECONDS.sleep(1);
+                    screenScrollPane.setVvalue(screenScrollPane.getVvalue() - Math.sin(radians/1000));
+                }
+                TimeUnit.MILLISECONDS.sleep(1000);
+                coffeView.setImage(new Image(getClass().getResourceAsStream("assets/coffee-empty-cup.png")));
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        })).start();
+    }
+
+    public void changeCoffeViewWhite(){
+        (new Thread(() -> {
+            try {
+                AudioClip note = new AudioClip(this.getClass().getResource("assets/espresso_sound.mp3").toString());
+                note.play();
+                TimeUnit.MILLISECONDS.sleep(20000);
+                coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-white-level-1.png")));
+                if (waterAmount>100) {
+                    TimeUnit.MILLISECONDS.sleep(5000);
+                    coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-white-level-2.png")));
+                }
+                if(waterAmount>150) {
+                    TimeUnit.MILLISECONDS.sleep(5000);
+                    coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-white-level-3.png")));
+                }
+                if (waterAmount>200) {
+                    TimeUnit.MILLISECONDS.sleep(5000);
+                    coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-white-level-4.png")));
+                }
+                TimeUnit.MILLISECONDS.sleep(5000);
+                note.stop();
+                for (int i=0;screenScrollPane.getVvalue()>0.45;i++){
+                    double degrees = i;
+                    double radians = Math.toRadians(degrees);
+                    TimeUnit.MILLISECONDS.sleep(1);
+                    screenScrollPane.setVvalue(screenScrollPane.getVvalue() - Math.sin(radians/1000));
+                }
+                TimeUnit.MILLISECONDS.sleep(1000);
+                coffeView.setImage(new Image(getClass().getResourceAsStream("assets/coffee-empty-cup.png")));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        })).start();
     }
 }
