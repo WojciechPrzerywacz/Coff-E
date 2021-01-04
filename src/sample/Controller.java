@@ -6,6 +6,9 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -14,14 +17,14 @@ import java.io.IOException;
 public class Controller {
 
     final public double MIN_ROTATE_VALUE = 60, MAX_ROTATE_VALUE = 360;
-
     double knobCurrentRotate, mouseCurrentX;
     @FXML
     public ToggleButton powerButton;
     public ImageView textImage;
     public ImageView knobLight;
-
     public int flag=0;
+
+
 
     @FXML
     private void handleButton(ActionEvent event) throws IOException {
@@ -31,6 +34,7 @@ public class Controller {
                 textImage.setImage(new Image(getClass().getResourceAsStream("brand-logo-on.png")));
                 knobLight.setImage(new Image(getClass().getResourceAsStream("volume-indicator-on.png")));
                 flag = 1;
+                playSound();
             }else {
                 textImage.setImage(new Image(getClass().getResourceAsStream("brand-logo-off.png")));
                 knobLight.setImage(new Image(getClass().getResourceAsStream("volume-indicator-off.png")));
@@ -38,6 +42,11 @@ public class Controller {
             }
         }
 
+    }
+
+    public void playSound(){
+        AudioClip note = new AudioClip(this.getClass().getResource("windows-xp-startup.mp3").toString());
+        note.play();
     }
 
     public void setRotate(MouseEvent event) {
