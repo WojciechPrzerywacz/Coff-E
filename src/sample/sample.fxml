@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="backgroundAnchorPane" onMouseDragged="#moveWindow" onMousePressed="#savePositionOffset" prefHeight="683.0" prefWidth="683.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane fx:id="backgroundAnchorPane" onMouseDragged="#moveWindow" onMousePressed="#savePositionOffset" prefHeight="683.0" prefWidth="683.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
         <ImageView fitHeight="683.0" fitWidth="683.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -34,9 +32,18 @@
          <content>
           <AnchorPane fx:id="screenAnchorPane" minHeight="0.0" minWidth="0.0" onScroll="#doNotScroll" prefHeight="390.0" prefWidth="83.0">
                <children>
-                  <ImageView fx:id="screenFirstLayer" fitHeight="94.0" fitWidth="95.0" layoutX="-6.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="screenFirstLayer" fitHeight="94.0" fitWidth="95.0" layoutX="-6.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="14.0">
                      <image>
                         <Image url="@assets/logo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="menuView" fitHeight="120.0" fitWidth="85.0" onMouseClicked="#handleButton2" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="120.0">
+                     <image>
+                        <Image url="@assets/coffee-types.png" />
+                     </image></ImageView>
+                  <ImageView fitHeight="120.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="240.0">
+                     <image>
+                        <Image url="@assets/coffee-types.png" />
                      </image>
                   </ImageView>
                </children>
