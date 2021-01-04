@@ -5,6 +5,7 @@ import javafx.animation.Transition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
@@ -23,10 +24,13 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class Controller {
+    public Label waterAmountLabel;
 
+    public enum CoffeeType {BLACK, WHITE}
     final public double MIN_ROTATE_VALUE = 0, MAX_ROTATE_VALUE = 360;
     public ScrollPane screenScrollPane;
     public ImageView screenFirstLayer;
+    public Label coffeeLeftLabel;
     double xOffset, yOffset;
     public AnchorPane backgroundAnchorPane;
 
@@ -42,6 +46,9 @@ public class Controller {
     private FadeTransition fadeIn = new FadeTransition(Duration.millis(3000));
     private FadeTransition fadeIn2 = new FadeTransition(Duration.millis(150));
     private FadeTransition fadeIn3 = new FadeTransition(Duration.millis(200));
+
+    private int coffeeLeft = 20;
+    public CoffeeType coffeeType = null;
 
     public void initialize() {
         fadeIn.setNode(screenScrollPane);
@@ -62,7 +69,7 @@ public class Controller {
         fadeIn3.setCycleCount(1);
         fadeIn3.setAutoReverse(false);
 
-
+        setCoffeeLevel(coffeeLeft);
     }
 
     @FXML
@@ -123,6 +130,19 @@ public class Controller {
         // screenScrollPane.setVvalue(screenScrollPane.getVvalue() + screenScrollPane.getVmax() / 3);
         // System.out.println(screenScrollPane.getVvalue());
     }
+
+    @FXML
+    public void chooseBlackCoffee(MouseEvent event) {
+        coffeeType = CoffeeType.BLACK;
+        handleButton2(event);
+    }
+
+    @FXML
+    public void chooseWhiteCoffee(MouseEvent event) {
+        coffeeType = CoffeeType.WHITE;
+        handleButton2(event);
+    }
+
     @FXML
     public void handleButton2(MouseEvent event){
         (new Thread(() -> {
@@ -150,6 +170,10 @@ public class Controller {
         double rotation = knobCurrentRotate + (event.getSceneX() - mouseCurrentX);
         rotation = rotation < MIN_ROTATE_VALUE ? MIN_ROTATE_VALUE : Math.min(rotation, MAX_ROTATE_VALUE);
         knobLight.setRotate(rotation);
+
+        double waterAmount = 50 + (rotation * 250 / 360);
+
+        waterAmountLabel.setText((int)waterAmount + " ml");
     }
 
     public void savePositionOffset(MouseEvent event) {
@@ -171,4 +195,13 @@ public class Controller {
         note.play();
     }
 
+    private void setCoffeeLevel(int value) {
+        StringBuilder text = new StringBuilder();
+
+        for(int i = 0; i < value; i++) {
+            text.append("|");
+        }
+
+        coffeeLeftLabel.setText(text.toString());
+    }
 }

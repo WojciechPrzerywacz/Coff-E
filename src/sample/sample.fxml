@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="backgroundAnchorPane" onMouseDragged="#moveWindow" onMousePressed="#savePositionOffset" prefHeight="683.0" prefWidth="683.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane fx:id="backgroundAnchorPane" onMouseDragged="#moveWindow" onMousePressed="#savePositionOffset" prefHeight="683.0" prefWidth="683.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
         <ImageView fitHeight="683.0" fitWidth="683.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@assets/coffee-machine-base.png" />
             </image>
         </ImageView>
-        <ToggleButton fx:id="powerButton" layoutX="192.0" layoutY="229.0" maxHeight="41.0" maxWidth="41.0" mnemonicParsing="false" onAction="#handleButton" prefHeight="41.0" prefWidth="41.0" stylesheets="@style.css" />
+        <ToggleButton fx:id="powerButton" layoutX="179.0" layoutY="229.0" maxHeight="41.0" maxWidth="41.0" mnemonicParsing="false" onAction="#handleButton" prefHeight="41.0" prefWidth="41.0" stylesheets="@style.css" AnchorPane.leftAnchor="180.0" />
         <ImageView fx:id="volumeKnob" fitHeight="41.0" fitWidth="41.0" layoutX="433.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@assets/volume-knob.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="knobLight" fitHeight="41.0" fitWidth="41.0" layoutX="433.0" layoutY="229.0" onMouseDragged="#controlKnob" onMousePressed="#setRotate" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="knobLight" fitHeight="41.0" fitWidth="41.0" layoutX="433.0" layoutY="229.0" onMouseDragged="#controlKnob" onMousePressed="#setRotate" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="209.0">
             <image>
                 <Image url="@assets/volume-indicator-off.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="textImage" fitHeight="38.0" fitWidth="102.0" layoutX="141.0" layoutY="95.0" pickOnBounds="true">
+        <ImageView fx:id="textImage" fitHeight="38.0" fitWidth="102.0" layoutX="146.0" layoutY="99.0" pickOnBounds="true">
             <image>
                 <Image url="@assets/brand-logo-off.png" />
             </image>
@@ -37,13 +40,26 @@
                         <Image url="@assets/logo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="menuView" fitHeight="120.0" fitWidth="85.0" onMouseClicked="#handleButton2" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="120.0">
+                  <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="125.0">
                      <image>
-                        <Image url="@assets/coffee-types.png" />
+                        <Image url="@assets/coffe-bean.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="coffeeLeftLabel" text="|||||||||||||||" textFill="#67d9ff" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="120.0" />
+                  <ImageView fx:id="menuView" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#chooseBlackCoffee" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="142.0">
+                     <image>
+                        <Image url="@assets/coffee-type-black-small.png" />
                      </image></ImageView>
-                  <ImageView fitHeight="120.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="240.0">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#chooseWhiteCoffee" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="195.0">
                      <image>
-                        <Image url="@assets/coffee-types.png" />
+                        <Image url="@assets/coffee-type-white-small.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="85.0" text="Ilość wody:" textAlignment="CENTER" textFill="#67d9ff" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="260.0" />
+                  <Label fx:id="waterAmountLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="320.0" prefHeight="17.0" prefWidth="85.0" text="50 ml" textAlignment="CENTER" textFill="#67d9ff" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="275.0" />
+                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="300.0">
+                     <image>
+                        <Image url="@assets/coffee-go.png" />
                      </image>
                   </ImageView>
                </children>
