@@ -131,7 +131,7 @@ public class Controller {
     @FXML
     public void handleButton2(MouseEvent event){
         Platform.runLater(() -> {
-            waterAmountTextLabel.setText("Ilość wody:");
+            waterAmountTextLabel.setText("Ilość kawy:");
             waterAmountLabel.setText((int)waterAmount + " ml");
         });
 
@@ -161,8 +161,8 @@ public class Controller {
             try {
 
                 Platform.runLater(() -> {
-                    waterAmountTextLabel.setText("Robię kawę...");
-                    waterAmountLabel.setText("");
+                    waterAmountTextLabel.setText("Przygotowuję");
+                    waterAmountLabel.setText((int)waterAmount + " ml kawy...");
                 });
 
                 TimeUnit.MILLISECONDS.sleep(1000);
