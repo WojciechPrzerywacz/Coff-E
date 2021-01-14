@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -18,8 +17,8 @@ public class Main extends Application {
         primaryStage.setScene(scene);
 
         // For no frame and background
-        // primaryStage.initStyle(StageStyle.TRANSPARENT);
-        // scene.setFill(Color.TRANSPARENT);
+        //primaryStage.initStyle(StageStyle.TRANSPARENT);
+        scene.setFill(Color.BLACK);
 
         primaryStage.show();
     }

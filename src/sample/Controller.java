@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -199,7 +200,7 @@ public class Controller {
             text.append("|");
         }
 
-        coffeeLeftLabel.setText(text.toString());
+        Platform.runLater(() -> coffeeLeftLabel.setText(text.toString()));
     }
 
     public void changeCoffeViewBlack(){
@@ -210,14 +211,17 @@ public class Controller {
                 TimeUnit.MILLISECONDS.sleep(20000);
                 coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-black-level-1.png")));
                 if (waterAmount>100) {
+                    setCoffeeLevel(--coffeeLeft);
                     TimeUnit.MILLISECONDS.sleep(5000);
                     coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-black-level-2.png")));
                 }
                 if (waterAmount>150) {
+                    setCoffeeLevel(--coffeeLeft);
                     TimeUnit.MILLISECONDS.sleep(5000);
                     coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-black-level-3.png")));
                 }
                 if (waterAmount>200) {
+                    setCoffeeLevel(--coffeeLeft);
                     TimeUnit.MILLISECONDS.sleep(5000);
                     coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-black-level-4.png")));
                 }
@@ -246,14 +250,17 @@ public class Controller {
                 TimeUnit.MILLISECONDS.sleep(20000);
                 coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-white-level-1.png")));
                 if (waterAmount>100) {
+                    setCoffeeLevel(--coffeeLeft);
                     TimeUnit.MILLISECONDS.sleep(5000);
                     coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-white-level-2.png")));
                 }
                 if(waterAmount>150) {
+                    setCoffeeLevel(--coffeeLeft);
                     TimeUnit.MILLISECONDS.sleep(5000);
                     coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-white-level-3.png")));
                 }
                 if (waterAmount>200) {
+                    setCoffeeLevel(--coffeeLeft);
                     TimeUnit.MILLISECONDS.sleep(5000);
                     coffeView.setImage(new Image(getClass().getResourceAsStream("assets/cup-coffe-white-level-4.png")));
                 }
