@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="backgroundAnchorPane" onMouseDragged="#moveWindow" onMousePressed="#savePositionOffset" prefHeight="683.0" prefWidth="683.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane fx:id="backgroundAnchorPane" onMouseDragged="#moveWindow" onMousePressed="#savePositionOffset" prefHeight="683.0" prefWidth="683.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
         <ImageView fitHeight="683.0" fitWidth="683.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -52,7 +55,7 @@
                         <Image url="@assets/coffee-type-white-small.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="85.0" text="Ilość wody:" textAlignment="CENTER" textFill="#67d9ff" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="260.0" />
+                  <Label fx:id="waterAmountTextLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="85.0" text="Ilość wody:" textAlignment="CENTER" textFill="#67d9ff" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="260.0" />
                   <Label fx:id="waterAmountLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="320.0" prefHeight="17.0" prefWidth="85.0" text="50 ml" textAlignment="CENTER" textFill="#67d9ff" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="275.0" />
                   <ImageView fx:id="startBrew" fitHeight="80.0" fitWidth="80.0" onMouseClicked="#handleButton3" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="300.0">
                      <image>

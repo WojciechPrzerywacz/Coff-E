@@ -18,6 +18,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Controller {
     public Label waterAmountLabel;
+    public Label waterAmountTextLabel;
+
     public enum CoffeeType {BLACK, WHITE}
     final public double MIN_ROTATE_VALUE = 0, MAX_ROTATE_VALUE = 360;
     public double waterAmount=50;
@@ -88,6 +90,11 @@ public class Controller {
                                 TimeUnit.MILLISECONDS.sleep(1);
                                 screenScrollPane.setVvalue(screenScrollPane.getVvalue() + Math.sin(radians/1000));
                         }
+
+                        Platform.runLater(() -> {
+                            screenScrollPane.setVvalue(screenScrollPane.getVvalue());
+                        });
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -123,6 +130,11 @@ public class Controller {
 
     @FXML
     public void handleButton2(MouseEvent event){
+        Platform.runLater(() -> {
+            waterAmountTextLabel.setText("Ilość wody:");
+            waterAmountLabel.setText((int)waterAmount + " ml");
+        });
+
         (new Thread(() -> {
             try {
 
@@ -134,6 +146,10 @@ public class Controller {
                     screenScrollPane.setVvalue(screenScrollPane.getVvalue() + Math.sin(radians/1000));
                 }
 
+                Platform.runLater(() -> {
+                    screenScrollPane.setVvalue(screenScrollPane.getVvalue());
+                });
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -143,6 +159,11 @@ public class Controller {
     public void handleButton3(MouseEvent event){
         (new Thread(() -> {
             try {
+
+                Platform.runLater(() -> {
+                    waterAmountTextLabel.setText("Robię kawę...");
+                    waterAmountLabel.setText("");
+                });
 
                 TimeUnit.MILLISECONDS.sleep(1000);
 
@@ -233,7 +254,12 @@ public class Controller {
                     TimeUnit.MILLISECONDS.sleep(1);
                     screenScrollPane.setVvalue(screenScrollPane.getVvalue() - Math.sin(radians/1000));
                 }
-                TimeUnit.MILLISECONDS.sleep(1000);
+
+                Platform.runLater(() -> {
+                    screenScrollPane.setVvalue(screenScrollPane.getVvalue());
+                });
+
+                TimeUnit.MILLISECONDS.sleep(3000);
                 coffeView.setImage(new Image(getClass().getResourceAsStream("assets/coffee-empty-cup.png")));
 
             } catch (InterruptedException e) {
@@ -272,7 +298,12 @@ public class Controller {
                     TimeUnit.MILLISECONDS.sleep(1);
                     screenScrollPane.setVvalue(screenScrollPane.getVvalue() - Math.sin(radians/1000));
                 }
-                TimeUnit.MILLISECONDS.sleep(1000);
+
+                Platform.runLater(() -> {
+                    screenScrollPane.setVvalue(screenScrollPane.getVvalue());
+                });
+
+                TimeUnit.MILLISECONDS.sleep(3000);
                 coffeView.setImage(new Image(getClass().getResourceAsStream("assets/coffee-empty-cup.png")));
             } catch (InterruptedException e) {
                 e.printStackTrace();
